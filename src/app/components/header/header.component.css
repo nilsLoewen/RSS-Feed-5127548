@@ -1,0 +1,21 @@
+.title {
+  color: lightgrey;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  font-weight: 110;
+  line-height: 50px;
+  letter-spacing: 1.2px;
+  padding-left: 5%;
+  align-self: auto;
+}
+
+
+.bg-dark {
+  background: linear-gradient(#272727, #272727, #272727, transparent) !important;
+  /* Standard syntax (must be last) */
+}
+
+#nav-bar{
+  height: 8rem;
+  padding-bottom: 3rem;
+}

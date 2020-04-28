@@ -1,0 +1,51 @@
+#deck-card {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+.md-pills .nav-link.active {
+  color: #fff;
+  background-color: #616161;
+}
+
+button.close {
+
+  right: 0;
+  z-index: 2;
+  padding-right: 1rem;
+  padding-top: .6rem;
+}
+
+
+
+.card-text {
+  display: none;
+}
+
+#fakult:hover .card-text {
+  display: block;
+}
+
+
+#fak-panel {
+  margin-top: 20rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  background-color: rgba(22, 22, 22, 0.7);
+}
+
+
+#goToTopImg {
+  position: fixed;
+  bottom: 1rem;
+  right: 1.5rem;
+  height: 2.5rem;
+
+}
+
+#goToTopImg:hover {
+  cursor: pointer;
+  height: 2.3rem;
+}

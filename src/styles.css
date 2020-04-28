@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+header,
+body,
+#landing {
+  height: 100%;
+}
+
+body {
+  /*background: linear-gradient(#252525,#252525,#272727,#a5a5a5,transparent) !important;*/
+}
+
+#landing {
+  background: url(assets/gray-lightbulb.jpg)no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

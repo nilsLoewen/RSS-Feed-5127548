@@ -1,11 +1,17 @@
 export class Article {
   title: string;
-  content: string;
-  date: Date;
+  desc: string;
+  date: string;
+  img:string;
+  link:string;
+  id:number;
 
-  constructor(title:string, content:string,date:Date) {
+  constructor(title:string, desc:string,date:string,img:string,link:string,id:number) {
+    this.id =id
     this.title = title;
-    this.content = content;
+    this.desc = desc;
     this.date = date;
+    this.img = img;
+    this.link = link
   }
 }

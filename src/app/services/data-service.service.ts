@@ -3,41 +3,36 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Article } from '../models/Article';
 import { ArticleComponent } from '../components/article/article.component';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class DataServiceService {
+export class DataServiceService  {
 
-  articles: Article[];
+  articles: any[];
+  mockArticles: Article[];
+  nodeServer: string = "http://localhost:5200/";
 
-  constructor() {
-
-    this.articles = [
-      {
-        title:"Arcticle No 1",
-        content:"adlknwecjwmcdspoücmlksdkcnmsljdncknsdkcnmsdjkcnaslcksdnmöclknascmöjklsdcnaslkmclasncjklasdnckljasdöklcsdknc",
-        date: new Date("2019-02-16"),
-      },
-
-      {
-        title: "Arcticle No 2",
-        content: "adlknwecjwmcdspoücmlksdkcnmsljdncknsdkcnmsdjkcnaslcksdnmöclknascmöjklsdcnaslkmclasncjklasdnckljasdöklcsdknc",
-        date: new Date("2020-01-04"),
-      },
-
-      {
-        title: "Arcticle No 3",
-        content: "adlknwecjwmcdspoücmlksdkcnmsljdncknsdkcnmsdjkcnaslcksdnmöclknascmöjklsdcnaslkmclasncjklasdnckljasdöklcsdknc",
-        date: new Date("2019-08-04"),
-      },
-    ]
-
+  constructor(private http: HttpClient) {
   }
 
 
+  getMockArticle() {
+    return this.mockArticles;
+  }
+
   getArticle() {
-    return this.articles;
+    let fullUrl = this.nodeServer + "news";
+    return this.http.get(fullUrl, { responseType: 'text' });
+  }
+
+  //
+ //  Wiki Proessing
+ //
+  getWiki(searchString){
+    let fullUrl = this.nodeServer + "wiki/"+searchString;
+    return this.http.get(fullUrl);
   }
 }

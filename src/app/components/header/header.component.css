@@ -11,11 +11,16 @@
 
 
 .bg-dark {
-  background: linear-gradient(#272727, #272727, #272727, transparent) !important;
-  /* Standard syntax (must be last) */
+  background: #272727 !important;
+  border-bottom: lightgray;
+  border-style: solid;
 }
 
 #nav-bar{
-  height: 8rem;
-  padding-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+
+#dienste:hover{
+  cursor: pointer;
 }

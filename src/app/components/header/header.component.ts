@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WikiSearchComponent} from './../wiki-search/wiki-search.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,17 @@ import {WikiSearchComponent} from './../wiki-search/wiki-search.component'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(/*private matDialog: MatDialog*/) { }
+  constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
 
-  openWikiSearch(): void {
-
-    /*const dialogConfig = new MatDialogConfig();
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
-    this.matDialog.open(WikiSearchComponent, dialogConfig);*/
+    const modalDialog = this.matDialog.open(WikiSearchComponent, dialogConfig);
   }
 
 }

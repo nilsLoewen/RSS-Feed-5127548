@@ -1,0 +1,15 @@
+.modal-header {
+  height: 4rem !important;
+}
+
+
+#resultTitle {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: larger;
+}
+
+#resultDesc{
+  font-size: medium;
+  font-style: italic;
+}

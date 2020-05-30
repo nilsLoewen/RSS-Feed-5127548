@@ -3,6 +3,7 @@
   <h3 class="card-header ">Tagesschau RSS-Feed</h3>
   <div class="card-body">
     <div class="card-deck">
+    <!--Erzeugt für jedes Element in der article-variable eine app-article-componente mit dem Element als Parameter-->
       <app-article *ngFor="let article of articles" [article]="article" class="article ml-3"></app-article>
     </div>
   </div>

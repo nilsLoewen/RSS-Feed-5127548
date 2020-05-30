@@ -7,10 +7,10 @@ const { IamAuthenticator} = require('ibm-watson/auth');
 const IAMKEY = 'LKVNn3aHSo7rxu0upGkZO1ozK3L1OorXTuh7lYUOgtwq'
 const CONFIGURL = ' https://stream.watsonplatform.net/text-to-speech/api'
 
-
-
-
-
+/**
+ * initialisiert einen TTS Handler der die IBM-Watson-Api nutzt
+ * Es wird das IAM-Authentification verfahren genutzt. Der Token und die URL wurden in der Vorlesung bereitgestellt
+ */
 const textToSpeach = new textToSpeachV1({
   authenticator: new IamAuthenticator({
     apikey: IAMKEY,
@@ -30,11 +30,16 @@ app.use(function (req, res, next) {
   next();
 });
 
+/**
+ * Starte den Server auf Port 5200
+ */
 app.listen(5200,'127.0.0.1',function(){
   console.log('Server now listening on 5200');
 })
 
-
+/**
+ * Schickt einen GET-Request um den RSS-Feed von der Tagesschau zu bekommen
+ */
 app.get('/news', function (req, res) {
   console.log("Loading Rss Feed");
   var o = {
@@ -45,7 +50,6 @@ app.get('/news', function (req, res) {
   request(o, function (error, response, body) {
     try {
       res.setHeader('Content-type', 'text/plain');
-      //console.log(body);
       res.send(body);
     } catch (err) {
       res.setHeader('Content-type', 'text/plain');
@@ -57,9 +61,9 @@ app.get('/news', function (req, res) {
   });
 });
 
-
-
-
+/**
+ * Nutzt die Wikipedia-Api um nach dem Suchstring in req.params zu suchen und den entsprechenden Artikel zurückzuschicken
+ */
 app.get('/wiki/:search', function (req, res) {
   console.log("Searching for ",req.params.search);
   var o = {
@@ -70,11 +74,18 @@ app.get('/wiki/:search', function (req, res) {
   request(o, function (error, request, body) {
     try {
       res.setHeader('Content-type', 'text/plain');
+      /**
+       * Setzt Config-Parameter für die TTS Funktion
+       * Als String wird der Extract des Wikipedia-Articels genutzt
+       */
       const synthesizeParams = {
         text: body['extract'],
         accept: 'audio/wav',
         voice: 'de-DE_DieterVoice',
       };
+      /**
+       * Startet die TTS Funktion der IBM-Watson-Api und speichert das Ergebniss als wiki.wav im Assets Ordner
+       */
       textToSpeach.synthesize(synthesizeParams)
         .then(audio => {
           audio.result.pipe(fileStream.createWriteStream('../src/assets/wiki.wav'));
@@ -91,27 +102,6 @@ app.get('/wiki/:search', function (req, res) {
       return
     }
   });
-});
-
-
-app.get('wiki/tts/:string',function(req,res){
-  console.log('tts');
-  const synthesizeParams = {
-    text: req.params.string,
-    accept: 'audio/wav',
-    voice: 'de-DE_DieterVoice',
-  };
-  textToSpeach.synthesize(synthesizeParams, function (err, audio) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-
-    textToSpeach.repairWavHeader(audio);
-    fileStream.writeFileSync('audio.wav', audio);
-    console.log('audio.wav written with a corrected wav header');
-  });
-  res.send("test");
 });
 
 

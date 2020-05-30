@@ -17,22 +17,24 @@
         </div>
       </div>
 
+<!--Dieser Bereich wird sichtbar, sobald die Wikipedia-Suche getätigt wurde.-->
       <div *ngIf="found">
         <div class="card">
           <div class="card-body" id="wikiCard">
-
+<!--Wenn die suche einen bestimmten String enthällt, der kennzeichnet, dass es zu der Eingabe keinen Wikipedia-Eintrag gibt wird der Folgende Bereich angezeigt-->
             <div *ngIf="!success">
               <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>No Results found</strong> You might search for something else...
               </div>
             </div>
-
+<!--Hier wird das Ergebniss der Wikipedia-Suche dargestellt-->
             <h4 id="resultTitle" class="card-title"></h4>
             <h6 id="resultDesc" class="card-subtitle mb-2 text-muted"></h6>
             <p id="resultExtract" class="card-text">
             </p>
             <audio controls>
               <source src="../assets/wiki.wav" type="audio/wav">
+<!--String wird nur angezeigt, wenn der Browser den Audioplayer nicht unterstützt-->
               No supported Audio
             </audio>
             <a  id="wikiButton" href="{{wikiURL}}"><button type="button"  class="btn btn-outline-info" >Open Wikipeadia-Page</button></a>

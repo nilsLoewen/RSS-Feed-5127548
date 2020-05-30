@@ -9,6 +9,9 @@ import { stringify } from 'querystring';
   providedIn: 'root'
 })
 
+/**
+ * Ein Service der alle Requests an den Server weiterleitet
+ */
 export class DataServiceService  {
 
   articles: any[];
@@ -18,19 +21,18 @@ export class DataServiceService  {
   constructor(private http: HttpClient) {
   }
 
-
-  getMockArticle() {
-    return this.mockArticles;
-  }
-
+  /**
+   * Sended GET-Request an den Server um den RSS Feed zu erhallten. Gibt diese Daten direkt an die Komponente weiter, die anfragt
+   */
   getArticle() {
     let fullUrl = this.nodeServer + "news";
     return this.http.get(fullUrl, { responseType: 'text' });
   }
 
-  //
- //  Wiki Proessing
- //
+  /**
+   * Sended GET-Request an den Server um eine Wikipediasuche durchzuführen. Das Ergebniss wird als JSON an die Komponente weitergeleitet, die anfragt.
+   * @param searchString Nutzereingabe, nach der bei Wikipedia gesucht werden soll
+   */
   getWiki(searchString){
     let fullUrl = this.nodeServer + "wiki/"+searchString;
     return this.http.get(fullUrl);
